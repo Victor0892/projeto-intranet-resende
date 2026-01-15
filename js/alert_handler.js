@@ -29,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Pode ser um <img>, um ícone Bootstrap (bi bi-*) ou um emoji.
         // Exemplo: <img src="../imagens/alerta.png" alt="Alerta" style="height: 20px; vertical-align: middle;">
         // Exemplo: '🎉' ou '<i class="bi bi-calendar-check-fill me-2"></i>'
-        iconHtml: '<img id="alert-icon" src="${pathPrefix}imagens/dia_do_servidor.png" alt="Alerta de Ponto Facultativo" style="height: 150px;">', 
+        iconHtml: `<img id="alert-icon" src="${pathPrefix}imagens/dia_do_servidor.png" alt="Alerta de Ponto Facultativo" style="height: 150px;">`, 
         
         title: 'ATENÇÃO: Ponto Facultativo!',
         
