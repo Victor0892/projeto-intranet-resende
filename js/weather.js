@@ -152,15 +152,25 @@ class WeatherWidget {
             return;
         }
 
-        // Se todayForecast for nulo, usa as temps min/max do 'currentWeather' (que são do dia)
+        // Se todayForecast for nulo, usa as temps min/max do 'currentWeather'
         const tempMin = todayForecast ? todayForecast.min : currentWeather.main.temp_min;
         const tempMax = todayForecast ? todayForecast.max : currentWeather.main.temp_max;
         
-        // Corrigido: A classe do widget deve ser 'weather-widget-container' e não o div interno
+        // --- CORREÇÃO DO LINK DO GITHUB ---
+        // Verifica se já estamos dentro da pasta 'pages'
+        const isPagesFolder = window.location.pathname.includes('/pages/');
+        
+        // Se estiver na pasta pages, o link é direto 'clima.html'. 
+        // Se estiver na raiz (index), o link é 'pages/clima.html'.
+        // IMPORTANTE: Removemos a barra "/" do início para respeitar o repositório do GitHub.
+        const linkPath = isPagesFolder ? 'clima.html' : 'pages/clima.html';
+        // ----------------------------------
+
         const widgetHTML = `
             <div class="weather-widget-content" 
-     onclick="if (!window.location.pathname.includes('clima.html')) window.location.href='/pages/clima.html';" 
-     title="Clima em ${this.cityName}">
+                 onclick="window.location.href='${linkPath}'" 
+                 title="Ver detalhes do clima em ${this.cityName}"
+                 style="cursor: pointer;">
 
                 <div class="weather-icon">
                     <i class="bi ${this.getWeatherIcon(currentWeather.weather[0].icon)}"></i>
