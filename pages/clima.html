@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Previsão do Tempo - Prefeitura Municipal de Resende">
+    <meta name="author" content="SuMTI - Prefeitura de Resende">
+    <title>Clima em Resende - Prefeitura Municipal</title>
+
+    <link rel="icon" href="../imagens/favicons.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link rel="stylesheet" href="../css/styles.css">
+    <link rel="stylesheet" href="../css/weather.css">
+
+    <style>
+        /* Estilos específicos para a página de clima */
+        .weather-hero {
+            color: white;
+            padding: 4rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .weather-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .weather-video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .weather-hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Variáveis de cores para temas */
+        :root {
+            --body-bg-light: #f8f9fa;
+            --card-bg-light: #ffffff;
+            --text-color-light: #212529;
+            --primary-color-light: #007bff;
+            --secondary-color-light: #6c757d;
+        }
+
+        body.light-theme {
+            background-color: var(--body-bg-light);
+            color: var(--text-color-light);
+        }
+
+        body.light-theme .current-weather-card,
+        body.light-theme .forecast-section,
+        body.light-theme .detail-item,
+        body.light-theme .forecast-day {
+            background: var(--card-bg-light);
+        }
+
+        body.light-theme .forecast-day:hover {
+            border-color: var(--secondary-color-light);
+        }
+
+        /* Estilos do Modo Escuro */
+        body:not(.light-theme) {
+            --body-bg-dark: #2c3138;
+            --card-bg-dark: #373c44;
+            --text-color-dark: #e9ecef;
+            --primary-color-dark: #8ab4f8;
+            --secondary-color-dark: #c5c8cf;
+
+            background-color: var(--azul-prefeitura);
+            color: var(--text-color-dark);
+        }
+
+        body:not(.light-theme) .current-weather-card,
+        body:not(.light-theme) .forecast-section,
+        body:not(.light-theme) .detail-item,
+        body:not(.light-theme) .forecast-day {
+            background: var(--card-bg-dark);
+            color: var(--text-color-dark);
+        }
+
+        body:not(.light-theme) .detail-item:hover {
+            background: #4a505b;
+        }
+
+        body:not(.light-theme) .forecast-day:hover {
+            border-color: var(--secondary-color-dark);
+        }
+
+        /* Outros estilos do código original */
+        .current-weather-card {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border: none;
+            transition: transform 0.3s ease;
+        }
+
+        .current-weather-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .main-temp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+
+        .main-temp i {
+            font-size: 4rem;
+            color: var(--secondary-color);
+            margin-right: 1rem;
+        }
+
+        .temperature {
+            font-size: 4rem;
+            font-weight: 300;
+            color: var(--primary-color);
+        }
+
+        .weather-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .detail-item {
+            display: flex;
+            align-items: center;
+            padding: 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .detail-item:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .detail-item i {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-right: 1rem;
+            width: 30px;
+        }
+
+        .forecast-section {
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .forecast-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+
+        .forecast-day {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .forecast-day:hover {
+            border-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        .forecast-icon i {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin: 1rem 0;
+        }
+
+        .forecast-minmax {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .forecast-minmax .max {
+            color: #e74c3c;
+            font-weight: 600;
+        }
+
+        .forecast-minmax .min {
+            color: #3498db;
+            font-weight: 600;
+        }
+
+        .loading-spinner {
+            text-align: center;
+            padding: 3rem;
+            color: #666;
+        }
+
+        body:not(.light-theme) .loading-spinner {
+            color: #999;
+        }
+
+        .last-update {
+            text-align: center;
+            color: #999;
+            font-size: 0.9rem;
+            margin-top: 2rem;
+            padding: 1rem;
+        }
+
+        @media (max-width: 768px) {
+            .temperature {
+                font-size: 3rem;
+            }
+
+            .main-temp i {
+                font-size: 3rem;
+            }
+
+            .weather-details {
+                grid-template-columns: 1fr;
+            }
+
+            .forecast-grid {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+        }
+            /* === EFEITO HOVER PARA WEATHER WIDGET === */
+
+            /* Container principal */
+            .weather-widget-container {
+                display: inline-block;
+                cursor: pointer; /* mãozinha igual às logos */
+                transition: transform 0.3s ease;
+            }
+
+            /* Animação suave de salto */
+            .weather-widget-container:hover {
+                transform: translateY(-8px) scale(1.05);
+            }
+
+            /* Efeito de sombra ao pairar, deixando mais "vivo" */
+            .weather-widget-container:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+                border-radius: 12px;
+            }
+
+            
+    </style>
+</head>
+
+<body>
+
+    <div class="top-navbar bg-darker py-1">
+        <div class="container d-flex justify-content-between align-items-center">
+            <div class="accessibility-tools">
+                <button id="font-decrease" class="btn btn-sm btn-outline-light" aria-label="Diminuir fonte">A-</button>
+                <button id="font-reset" class="btn btn-sm btn-outline-light mx-1" aria-label="Fonte normal">A</button>
+                <button id="font-increase" class="btn btn-sm btn-outline-light" aria-label="Aumentar fonte">A+</button>
+            </div>
+            <div class="social-links">
+                <a href="https://www.facebook.com/prefeituraderesende" class="text-white mx-2 social-icon"
+                    aria-label="Facebook">
+                    <i class="bi bi-facebook"></i>
+                </a>
+                <a href="https://www.instagram.com/prefresende/" class="text-white mx-2 social-icon"
+                    aria-label="Instagram">
+                    <i class="bi bi-instagram"></i>
+                </a>
+                <a href="https://t.me/PrefResende" class="text-white mx-2 social-icon" aria-label="Telegram">
+                    <i class="bi bi-telegram"></i>
+                </a>
+                <a href="https://www.youtube.com/channel/UC6p-O69J9UuvPsAYsAWS9QQ" class="text-white mx-2 social-icon"
+                    aria-label="YouTube">
+                    <i class="bi bi-youtube"></i>
+                </a>
+            </div>
+            <div class="theme-switcher">
+                <button id="theme-toggle" class="btn btn-sm btn-outline-light">
+                    <i class="bi bi-moon-fill"></i> Modo Escuro
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <header class="navbar-wrapper">
+        <video id="navbar-video" autoplay muted playsinline>
+            <source src="../imagens/bg-header-digital.mp4" type="video/mp4">
+            <img src="../imagens/bg-header.jpg" alt="Header background" class="img-fallback">
+        </video>
+
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container">
+                <a class="navbar-brand" href="https://www.resende.rj.gov.br" target="_blank" rel="noopener noreferrer">
+                    <img src="../imagens/logo.webp" alt="Logo Prefeitura - Ir para site oficial" width="110" height="145"
+                        class="logo-navbar" loading="lazy">
+                </a>
+                <a class="navbar-brand" href="http://inteligente.resende.rj.gov.br/" target="_blank"
+                    rel="noopener noreferrer">
+                    <img src="../imagens/LogoResendeOnLine.jpg" alt="Logo Resende Online - Ir para site oficial"
+                        width="170" height="50" class="logo-navbar ms-2" loading="lazy">
+                </a>
+
+                <div id="weather-widget-container" class="weather-widget-container"></div>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuNav"
+                    aria-label="Menu de navegação">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="menuNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="../index.html">
+                                <i class="bi bi-house-door me-1"></i> Home
+                            </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                <i class="bi bi-list-ul me-1"></i> Sistemas
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="sistemas_saude.html"><i
+                                            class="bi bi-heart-pulse me-2"></i>Saúde</a></li>
+                                <li><a class="dropdown-item" href="sistemas_educacao.html"><i
+                                            class="bi bi-book me-2"></i>Educação</a></li>
+                                <li><a class="dropdown-item" href="sistemas_ouvidoria.html"><i
+                                            class="bi bi-megaphone me-2"></i>Ouvidoria</a></li>
+                                <li><a class="dropdown-item" href="suporte.html"><i
+                                            class="bi bi-question-circle me-2"></i>Instalações(Suporte Remoto)</a></li>
+                                <li><a class="dropdown-item" href="chamados.html"><i
+                                            class="bi bi-question-circle me-2"></i>SUMTI GLPI</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="lista_telefonica.html">
+                                <i class="bi bi-person-lines-fill me-1"></i> Contatos
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link active" href="clima.html" aria-current="page">
+                                <i class="bi bi-cloud-sun me-1"></i> Clima
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://webmail.resende.rj.gov.br/">
+                                <i class="bi bi-envelope me-1"></i> Webmail
+                            </a>
+                        </li>
+                    </ul>
+
+                    <!-- Barra de Pesquisa -->
+                    <form class="d-flex ms-lg-3 mt-2 mt-lg-0" id="search-form" role="search">
+                        <div class="input-group">
+                            <label for="search-input" class="visually-hidden">Termo de Pesquisa</label>
+
+                            <input class="form-control" type="search" id="search-input" name="q" required
+                                placeholder="Pesquisar..." aria-label="Pesquisar" aria-describedby="search-button">
+
+                            <button class="btn btn-outline-light" type="submit" id="search-button" aria-label="Buscar">
+                                <i class="bi bi-search"></i>
+                            </button>
+                        </div>
+                    </form> 
+                </div>
+            </div>
+        </nav>
+
+        <div class="decorative-navbar">
+            <div class="color-section left-color"></div>
+            <div class="color-section middle-color"></div>
+            <div class="color-section right-color"></div>
+        </div>
+    </header>
+
+    <section id="weather-hero" class="weather-hero">
+        <video id="weather-video-bg" class="weather-video-bg" autoplay loop muted playsinline>
+            <source src="" type="video/mp4">
+        </video>
+        <div class="container text-center weather-hero-content">
+            <h1 class="display-4 fw-bold mb-3">
+                <i class="bi bi-cloud-sun me-3"></i>Clima em Resende
+            </h1>
+            <p id="current-weather-summary" class="lead mb-4"></p>
+            <button id="scroll-to-forecast" class="btn btn-outline-light btn-lg">
+                <i class="bi bi-calendar3 me-2"></i>Ver Previsão 5 Dias
+            </button>
+        </div>
+    </section>
+
+    <main class="container py-5">
+        <div id="weather-content">
+            <div class="loading-spinner">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Carregando...</span>
+                </div>
+                <p class="mt-2">Carregando informações do clima...</p>
+            </div>
+            
+            <section id="forecast-section" class="forecast-section" style="display: none;">
+                </section>
+        </div>
+
+        <div class="last-update">
+            <i class="bi bi-clock"></i> Última atualização: <span id="last-update-time">--</span>
+        </div>
+    </main>
+
+    <div class="decorative-navbar">
+        <div class="color-section left-color"></div>
+        <div class="color-section middle-color"></div>
+        <div class="color-section right-color"></div>
+    </div>
+
+    <footer class="bg-darker text-white py-4">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <a href="https://www.resende.rj.gov.br" target="_blank" rel="noopener noreferrer">
+                        <img src="../imagens/logo.webp" alt="Logo Prefeitura - Ir para site oficial" width="110"
+                            height="145" class="logo-navbar" loading="lazy">
+                    </a>
+                    <p>Intranet Corporativa</p>
+                </div>
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <h3>SuMTI - Contato</h3>
+                    <p><i class="bi bi-telephone me-2"></i> (24) 3354-8181</p>
+                    <p><i class="bi bi-envelope me-2"></i> sumti@resende.rj.gov.br</p>
+                    <p><i class="bi bi-clock me-2"></i> <strong>Expediente:</strong> De segunda a sexta-feira, de 12h às
+                        18h.</p>
+                </div>
+                <div class="col-md-4">
+                    <h3>Links Rápidos</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="http://portalservidor.resende.rj.gov.br/"
+                                class="text-white text-decoration-none">Portal do Servidor</a></li>
+                        <li><a href="https://resende.rj.gov.br/blogtransparencia/page/index.asp"
+                                class="text-white text-decoration-none">Portal Transparência</a></li>
+                        <li><a href="https://resende.rj.gov.br/servicos/portal-da-pessoa-com-deficiencia"
+                                class="text-white text-decoration-none">Portal da Pessoa com Deficiência</a></li>
+                                <li><a href="https://transparencia.betha.cloud/#/mLjqO7Hq0-hN_1MV2wA28A==/consulta/11420?esconderCabecalho=S&esconderMenu=S&esconderRodape=S"
+                                class="text-white text-decoration-none">Licitações</a></li>
+                        <li><a href="https://resende.rj.gov.br/blogtransparencia/page/boletim_oficial.asp"
+                                class="text-white text-decoration-none">Boletim Oficial</a></li>
+                        <li><a href="https://e-gov.betha.com.br/cdweb/03114-520/main.faces"
+                                class="text-white text-decoration-none">IPTU</a></li>
+                        <li><a href="https://resende.rj.gov.br/servicos/transporte-publico"
+                                class="text-white text-decoration-none">Transporte Público</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 bg-light">
+            <div class="text-center">
+                <p class="mb-0">&copy; SuMTI - SUPERINTENDÊNCIA MUNICIPAL DE TECNOLOGIA DA INFORMAÇÃO<br>
+                    PMR © 2025 Todos os direitos reservados</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/weather.js"></script>
+    
+    <script>
+        // Sistema de temas claro/escuro
+        document.addEventListener('DOMContentLoaded', function () {
+            const themeToggle = document.getElementById('theme-toggle');
+            const themeIcon = themeToggle.querySelector('i');
+        
+            // Verificar tema salvo ou preferência do sistema
+            const savedTheme = localStorage.getItem('theme');
+            const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+            // Aplicar tema inicial
+            if (savedTheme === 'light' || (!savedTheme && !systemPrefersDark)) {
+                document.body.classList.add('light-theme');
+            }
+            updateThemeButton();
+        
+            // Alternar tema
+            themeToggle.addEventListener('click', function () {
+                if (document.body.classList.contains('light-theme')) {
+                    document.body.classList.remove('light-theme');
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    document.body.classList.add('light-theme');
+                    localStorage.setItem('theme', 'light');
+                }
+                updateThemeButton();
+            });
+        
+            function updateThemeButton() {
+                if (document.body.classList.contains('light-theme')) {
+                    themeIcon.classList.remove('bi-sun-fill');
+                    themeIcon.classList.add('bi-moon-fill');
+                    themeToggle.innerHTML = '<i class="bi bi-moon-fill me-1"></i> Modo Escuro';
+                } else {
+                    themeIcon.classList.remove('bi-moon-fill');
+                    themeIcon.classList.add('bi-sun-fill');
+                    themeToggle.innerHTML = '<i class="bi bi-sun-fill me-1"></i> Modo Claro';
+                }
+            }
+        });
+
+        // Controles de Fonte
+        const html = document.documentElement;
+        const fontDecrease = document.getElementById('font-decrease');
+        const fontReset = document.getElementById('font-reset');
+        const fontIncrease = document.getElementById('font-increase');
+
+        const changeFontSize = (operation) => {
+            const currentSize = parseFloat(getComputedStyle(html).fontSize);
+            let newSize;
+
+            if (operation === 'increase') newSize = Math.min(currentSize * 1.1, 20);
+            else if (operation === 'decrease') newSize = Math.max(currentSize * 0.9, 14);
+            else newSize = 16; // Reset
+
+            html.style.fontSize = `${newSize}px`;
+            localStorage.setItem('fontSize', newSize);
+        };
+
+        if (fontIncrease) fontIncrease.addEventListener('click', () => changeFontSize('increase'));
+        if (fontDecrease) fontDecrease.addEventListener('click', () => changeFontSize('decrease'));
+        if (fontReset) fontReset.addEventListener('click', () => changeFontSize('reset'));
+
+        // Comportamento de scroll para navbar compacta
+        const navbarWrapper = document.querySelector('.navbar-wrapper');
+        const navbar = document.querySelector('.navbar');
+        const navbarVideo = document.getElementById('navbar-video');
+
+        let lastScrollTop = 0;
+
+        window.addEventListener('scroll', function () {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            // Comportamento de mostrar/esconder navbar no scroll
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                // Scroll para baixo - esconder navbar
+                navbarWrapper.style.transform = 'translateY(-100%)';
+            } else {
+                // Scroll para cima - mostrar navbar
+                navbarWrapper.style.transform = 'translateY(0)';
+
+                // Adicionar classe compacta quando scroll > 50px
+                if (scrollTop > 50) {
+                    navbarWrapper.classList.add('navbar-compact');
+                    navbar.classList.add('navbar-compact');
+                    if (navbarVideo) navbarVideo.classList.add('navbar-compact');
+                    document.body.style.paddingTop = '110px';
+                } else {
+                    navbarWrapper.classList.remove('navbar-compact');
+                    navbar.classList.remove('navbar-compact');
+                    if (navbarVideo) navbarVideo.classList.remove('navbar-compact');
+                    document.body.style.paddingTop = '180px';
+                }
+            }
+
+            lastScrollTop = scrollTop;
+        });
+
+    </script>
+    
+    <script>
+        // Carregar clima detalhado quando a página estiver pronta
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Página clima.html carregada');
+
+            if (typeof loadDetailedWeather === 'function') {
+                loadDetailedWeather();
+
+                // Atualizar a cada 30 minutos
+                setInterval(loadDetailedWeather, 30 * 60 * 1000);
+            } else {
+                console.error('Função loadDetailedWeather não encontrada');
+                document.getElementById('weather-content').innerHTML = `
+                    <div class="alert alert-danger text-center">
+                        <i class="bi bi-exclamation-triangle"></i>
+                        <h4>Erro de carregamento</h4>
+                        <p>O arquivo weather.js não foi carregado corretamente.</p>
+                        <button onclick="location.reload()" class="btn btn-primary">
+                            <i class="bi bi-arrow-clockwise"></i> Recarregar Página
+                        </button>
+                    </div>
+                `;
+            }
+        });
+    </script>
+
+<script src="../js/search_handler.js"></script>
+<script src="../js/alert_handler.js"></script>
+</body>
+
+</html>

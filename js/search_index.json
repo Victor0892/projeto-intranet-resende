@@ -1,0 +1,47 @@
+[
+    {
+        "url": "../index.html", 
+        "title": "Home - Intranet da Prefeitura de Resende",
+        "content": "Página inicial da Intranet. Contém boas-vindas, acesso a redes sociais, controle de fontes, modo claro/escuro, links para o Portal do Servidor, e destaques de serviços: SEI, Betha e Suporte de TI."
+    },
+    {
+        "url": "betha.html", 
+        "title": "Acesso ao Sistema BETHA e Recursos Humanos (RH)",
+        "content": "Sistema que permite o controle e gerenciamento de protocolos e recursos humanos. Utilizado para acesso a holerites, informes de rendimento, controle de ponto e benefícios dos servidores."
+    },
+    {
+        "url": "chamados.html",
+        "title": "Abertura de Chamados - Suporte de TI (SuMTI)",
+        "content": "Formulário para o Servidor Público Municipal solicitar atendimento técnico e suporte de TI junto ao Departamento de Tecnologia de Informação (SuMTI). Solicitações de manutenção, internet, software e hardware."
+    },
+    {
+        "url": "clima.html",
+        "title": "Clima e Previsão do Tempo de Resende",
+        "content": "Página dedicada à exibição da previsão do tempo atualizada para a cidade de Resende, Rio de Janeiro. Informações sobre temperatura, umidade e condições meteorológicas."
+    },
+    {
+        "url": "lista_telefonica.html",
+        "title": "Contatos e Lista Telefônica da Prefeitura",
+        "content": "Lista de telefones e ramais de contato de todos os departamentos, secretarias e setores da Prefeitura Municipal de Resende. Encontre facilmente o contato de qualquer setor municipal."
+    },
+    {
+        "url": "sistemas_educacao.html",
+        "title": "Sistemas da Educação",
+        "content": "Acesso aos sistemas e ferramentas online para a Secretaria de Educação, incluindo plataformas de gestão escolar, frequência de alunos e recursos para professores."
+    },
+    {
+        "url": "sistemas_ouvidoria.html",
+        "title": "Sistemas da Ouvidoria Municipal",
+        "content": "Canal oficial para registro de manifestações, reclamações, denúncias, elogios e sugestões à administração pública de Resende. Acesso aos sistemas de transparência."
+    },
+    {
+        "url": "sistemas_saude.html",
+        "title": "Sistemas da Saúde Municipal",
+        "content": "Plataformas e links de acesso a sistemas de agendamento, prontuários eletrônicos e informações operacionais para a Secretaria de Saúde."
+    },
+    {
+        "url": "suporte.html",
+        "title": "Manuais e Guias de Suporte",
+        "content": "Página com manuais, guias e FAQs para o uso dos sistemas corporativos da Prefeitura, como SEI, Email e outros recursos de TI. Ajuda, tutoriais e documentação técnica."
+    }
+]

@@ -1,0 +1,2506 @@
+:root {
+    --verde-prefeitura: #a9ca48;
+    --cinza-prefeitura: #898a87;
+    --azul-prefeitura: #1f2c56;
+    --azul-escuro: #121825;
+    --transition-speed: 0.3s;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    padding-top: 180px; /* Ajustado para altura total do header */
+    line-height: 1.6;
+    color: #333333;
+    transition: padding-top var(--transition-speed) ease;
+}
+
+/* Top Navbar */
+.top-navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 2000;
+    transition: all var(--transition-speed) ease;
+    font-size: 0.85rem;
+    background: linear-gradient(90deg, 
+        var(--azul-prefeitura) 0%, 
+        var(--azul-prefeitura) 50%, 
+        var(--azul-prefeitura) 100%) !important;
+    border: none;
+}
+
+/* Contraste para modo claro */
+[data-bs-theme="light"] .top-navbar {
+    background-color: #f8f9fa !important;
+    border-bottom: 1px solid #dee2e6;
+}
+
+[data-bs-theme="light"] .top-navbar a,
+[data-bs-theme="light"] .top-navbar button {
+    color: #212529 !important;
+    border-color: #212529 !important;
+}
+
+/* Ícones de redes sociais */
+.social-links {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.social-icon {
+    font-size: 1.6rem !important;
+    transition: all var(--transition-speed) ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.15);
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px) scale(1.1);
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Modo claro para ícones sociais */
+[data-bs-theme="light"] .social-icon {
+    background-color: rgba(33, 37, 41, 0.15);
+    color: var(--azul-prefeitura) !important;
+}
+
+[data-bs-theme="light"] .social-icon:hover {
+    background-color: rgba(33, 37, 41, 0.25);
+    color: var(--azul-escuro) !important;
+}
+
+/* Container da navbar com video background */
+.navbar-wrapper {
+    position: fixed;
+    top: 30px; /* Altura da top navbar */
+    width: 100%;
+    z-index: 1000;
+    transition: height var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+}
+/* Arredondamento específico para a LogoResendeOnLine */
+.navbar-brand img[src*="LogoResendeOnLine"] {
+    border-radius: 5px;
+    overflow: hidden;
+    transition: all var(--transition-speed) ease;
+}
+
+
+/* CORREÇÃO PARA NAVBAR DECORATIVA SUPERIOR */
+.navbar-wrapper > .decorative-navbar {
+    margin-top: auto; /* Cola no final do container */
+    width: 100%;
+}
+
+/* Video background */
+#navbar-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    z-index: 1;
+    transition: height var(--transition-speed) ease;
+}
+
+.img-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: none;
+}
+
+.no-js .img-fallback,
+.no-video .img-fallback {
+    display: block;
+}
+
+/* Navbar principal */
+.navbar {
+    background: transparent !important;
+    height: 158px;
+    position: relative;
+    z-index: 2;
+    transition: height var(--transition-speed) ease;
+    margin-bottom: 0 !important;
+}
+
+.navbar .container {
+    position: relative;
+    z-index: 3;
+}
+
+.navbar .nav-link {
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.95) !important;
+    transition: all var(--transition-speed) ease;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link:focus {
+    color: white !important;
+    transform: translateY(-2px);
+}
+
+.navbar .btn {
+    font-weight: 600;
+}
+
+/* Logo */
+.logo-navbar {
+    transition: transform var(--transition-speed) ease;
+}
+
+.logo-navbar:hover {
+    transform: scale(1.05);
+}
+
+/* Barra de pesquisa */
+#search-input {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 2px solid white !important;
+    font-weight: 500;
+    min-width: 200px;
+    transition: all var(--transition-speed) ease;
+}
+
+#search-input:focus {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.1);
+    border: 2px solid white !important;
+}
+
+#search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 500;
+}
+
+#search-button {
+    transition: all var(--transition-speed) ease;
+    border: 2px solid white !important;
+    font-weight: bold;
+}
+
+#search-button:hover,
+#search-button:focus {
+    background-color: rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+}
+
+#search-button .bi-search {
+    color: white;
+    font-weight: bold;
+    font-size: 1.1em;
+}
+
+/* Navbar decorativa */
+.decorative-navbar {
+    display: flex;
+    width: 100%;
+    height: 8px;
+    position: relative;
+    z-index: 5;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+.color-section {
+    flex: 1;
+    height: 100%;
+    position: relative;
+    transition: all var(--transition-speed) ease;
+}
+
+.left-color {
+    background-color: var(--verde-prefeitura);
+}
+
+.middle-color {
+    background-color: var(--cinza-prefeitura);
+}
+
+.right-color {
+    background-color: var(--azul-prefeitura);
+}
+
+.color-section::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, 
+        rgba(255,255,255,0.05) 0%, 
+        rgba(255,255,255,0.15) 50%, 
+        rgba(255,255,255,0.05) 100%);
+}
+
+/* Estilo para os dropdowns */
+.dropdown-menu {
+    background-color: var(--verde-prefeitura);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 0;
+    z-index: 2001; /* ADICIONE ESTA LINHA - z-index alto para ficar acima da navbar decorativa */
+    
+}
+
+.dropdown-item {
+    color: rgba(255, 255, 255, 0.95);
+    transition: all calc(var(--transition-speed) / 2) ease;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    
+}
+
+.dropdown-item:hover,
+.dropdown-item:focus {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: white;
+}
+
+/* Espaçamento dos ícones */
+.nav-link i, 
+.dropdown-item i {
+    margin-right: 8px;
+    font-size: 0.95em;
+}
+
+/* Modal de resultados */
+#searchResultsModal .modal-content {
+    background-color: #f8f9fa;
+    border: none;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+#searchResultsModal mark {
+    background-color: #fff3cd;
+    padding: 0 2px;
+}
+
+/* Hero Section com Vídeo de Fundo */
+.hero-section {
+    padding: 60px 0;
+    margin-bottom: 0;
+}
+
+.hero-video-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+/* Overlay escuro para melhor legibilidade do texto */
+.hero-video-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+    z-index: 1;
+}
+
+.hero-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-section h1,
+.hero-section p {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+/* Cards de serviços */
+.card {
+    transition: transform var(--transition-speed) ease, 
+                box-shadow var(--transition-speed) ease,
+                background-color var(--transition-speed) ease;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card-body {
+    padding: 1.5rem;
+}
+
+/* Seções escuras */
+.bg-dark {
+    background-color: var(--azul-prefeitura) !important;
+}
+
+.bg-darker {
+    background-color: var(--azul-escuro) !important;
+}
+
+.bg-secondary {
+    background-color: #2d3748 !important;
+}
+
+/* Carrossel */
+.carousel-inner img {
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.5s ease;
+}
+
+.carousel-item:hover img {
+    transform: scale(1.02);
+}
+
+/* Links e botões */
+a, button {
+    transition: all var(--transition-speed) ease;
+}
+
+.btn-primary {
+    background-color: var(--verde-prefeitura);
+    border-color: var(--verde-prefeitura);
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: #95b33c;
+    border-color: #95b33c;
+}
+
+/* Rodapé */
+footer a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+}
+
+footer a:hover,
+footer a:focus {
+    color: white;
+    text-decoration: underline;
+}
+
+/* Responsividade */
+@media (max-width: 1200px) {
+    .navbar .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.95rem;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 160px;
+    }
+    
+    .navbar-wrapper {
+        top: 30px;
+        height: 130px;
+    }
+    
+    #navbar-video,
+    .navbar {
+        height: 130px;
+    }
+    
+    .navbar-collapse {
+        padding-top: 15px;
+        background-color: rgba(0, 0, 0, 0.85);
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    
+    #search-form {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    #search-input {
+        width: 100% !important;
+    }
+
+    .dropdown-menu {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px;
+    }
+    
+    .navbar-wrapper {
+        top: 30px;
+        height: 110px;
+    }
+    
+    #navbar-video,
+    .navbar {
+        height: 110px;
+    }
+    
+    .hero-section {
+        padding: 80px 0 60px;
+        text-align: center;
+    }
+    
+    .hero-video {
+        opacity: 0.8;
+    }
+    
+    .hero-section .btn {
+        display: block;
+        width: 80%;
+        margin: 0 auto 10px;
+    }
+
+    .navbar-brand img:first-child {
+        height: 80px !important;
+        width: auto;
+    }
+    
+
+    /* Responsividade para ícones sociais */
+    .social-links {
+        gap: 0.5rem;
+    }
+    
+    .social-icon {
+        font-size: 1.4rem !important;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .top-navbar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .accessibility-tools, 
+    .social-links, 
+    .theme-switcher {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 120px;
+    }
+    
+    .navbar-wrapper {
+        top: 30px;
+        height: 90px;
+    }
+    
+    #navbar-video,
+    .navbar {
+        height: 90px;
+    }
+    
+    .logo-navbar {
+        height: 40px;
+        width: auto;
+    }
+    
+    .hero-section h1 {
+        font-size: 2rem;
+    }
+
+    /* Ajuste para barra de pesquisa em mobile */
+    #search-input {
+        font-size: 0.9rem;
+        padding: 0.375rem 0.75rem;
+    }
+    
+    #search-button {
+        padding: 0.375rem 0.75rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    /* Responsividade para ícones sociais em mobile */
+    .social-links {
+        gap: 0.3rem;
+    }
+    
+    .social-icon {
+        font-size: 1.2rem !important;
+        width: 30px;
+        height: 30px;
+    }
+
+    .theme-switcher .btn {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .top-navbar {
+        font-size: 0.75rem;
+        padding: 5px 0;
+    }
+    
+    .top-navbar .btn {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+    }
+}
+
+/* Acessibilidade: foco visível */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus {
+    outline: 2px solid var(--verde-prefeitura);
+    outline-offset: 2px;
+}
+
+/* No JavaScript fallback */
+.no-js .navbar-toggler {
+    display: none;
+}
+
+.no-js .navbar-collapse {
+    display: block;
+}
+
+/* Classe para navbar compacta em scroll */
+.navbar-compact {
+    height: 80px !important;
+}
+
+.navbar-compact #navbar-video {
+    height: 80px !important;
+}
+
+.navbar-compact .navbar-brand img {
+    height: 60px !important;
+    width: auto;
+}
+
+.navbar-compact .nav-link {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* CORREÇÃO PARA NAVBAR DECORATIVA INFERIOR */
+main > .decorative-navbar {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* CORREÇÃO ESPECÍFICA PARA ALINHAMENTO DA NAVBAR DECORATIVA SUPERIOR */
+.navbar-wrapper {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    z-index: 1000;
+    transition: height var(--transition-speed) ease;
+}
+
+.navbar-wrapper > .decorative-navbar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    z-index: 5;
+    
+}
+
+/* Garante que a navbar principal não tenha margens */
+.navbar {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Remove qualquer padding extra do container */
+.navbar .container {
+    padding-bottom: 0;
+}
+
+/* Garante que o vídeo não crie espaçamento */
+#navbar-video {
+    display: block;
+    vertical-align: bottom;
+}
+
+/* Estilos para a seção de serviços com vídeos */
+.service-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.service-video-container {
+    position: relative;
+    height: 120px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #6c757d; /* Cor de fundo similar ao card */
+}
+
+.service-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.service-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+}
+
+.clickable {
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.clickable:hover {
+    color: #a3d1ff !important;
+}
+
+.service-link {
+    text-decoration: none;
+}
+
+/* Sistema de temas claro e escuro */
+body.light-theme {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-tertiary: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #495057;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --navbar-bg: #f8f9fa;
+    --footer-bg: #f8f9fa;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+body.dark-theme {
+    --bg-primary: #121212;
+    --bg-secondary: #1e1e1e;
+    --bg-tertiary: #2d2d2d;
+    --text-primary: #f8f9fa;
+    --text-secondary: #e9ecef;
+    --border-color: #495057;
+    --card-bg: #1e1e1e;
+    --navbar-bg: #1a1a1a;
+    --footer-bg: #121212;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+}
+
+/* Aplicar cores aos elementos */
+body.light-theme .top-navbar {
+    background: linear-gradient(90deg, #e9ecef 0%, #dee2e6 50%, #e9ecef 100%) !important;
+    border-bottom: 1px solid var(--border-color);
+}
+
+body.light-theme .top-navbar a,
+body.light-theme .top-navbar button {
+    color: var(--text-primary) !important;
+    border-color: var(--text-primary) !important;
+}
+
+body.light-theme .social-icon {
+    background-color: rgba(33, 37, 41, 0.15);
+    color: var(--azul-prefeitura) !important;
+}
+
+body.light-theme .social-icon:hover {
+    background-color: rgba(33, 37, 41, 0.25);
+    color: var(--azul-escuro) !important;
+}
+
+body.light-theme .bg-dark {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary);
+}
+
+body.light-theme .bg-secondary {
+    background-color: var(--bg-tertiary) !important;
+    color: var(--text-primary);
+}
+
+body.light-theme .bg-darker {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary);
+}
+
+body.light-theme .card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+body.light-theme .hero-section h1,
+body.light-theme .hero-section p {
+    color: white; /* Mantém o texto branco no hero por contraste */
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+}
+
+
+/* Estilo para tornar o vídeo de fundo claro no Modo Claro*/
+.light-theme .hero-video {
+    filter: invert(1) brightness(1.2) contrast(1.1); 
+    transition: filter var(--transition-speed) ease; 
+}
+/* ------------------------------------------------------------------ */
+/* Ajuste de Cores do Texto na Hero Section para o Modo Claro          */
+/* ------------------------------------------------------------------ */
+
+.light-theme .hero-section h1,
+.light-theme .hero-section p {
+    /* Define o texto para um tom escuro (por exemplo, preto ou o cinza da prefeitura) */
+    color: var(--azul-escuro) !important; 
+    
+    /* Opcional: Remove a sombra do texto para um look mais limpo no modo claro */
+    text-shadow: none;
+    
+    /* Adiciona transição para suavizar a mudança de cor */
+    transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease;
+}
+/* RODAPÉ NO MODO CLARO */
+body.light-theme footer.bg-darker {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary);
+    border-top: 1px solid var(--border-color);
+}
+
+body.light-theme footer h3 {
+    color: var(--text-primary);
+}
+
+body.light-theme footer a {
+    color: var(--text-primary) !important;
+}
+
+body.light-theme footer a:hover {
+    color: var(--azul-prefeitura) !important;
+    text-decoration: underline;
+}
+
+body.light-theme footer hr.bg-light {
+    background-color: var(--border-color) !important;
+}
+
+body.light-theme footer .text-white {
+    color: var(--text-primary) !important;
+}
+/* Ajusta a logo da Prefeitura no rodapé para preto no modo claro */
+body.light-theme footer img[src*="logo.webp"] {
+    filter: invert(1) grayscale(1) !important;
+}
+/* Ajustes para modo claro nos textos */
+body.light-theme .text-white:not(.hero-section *) {
+    color: var(--text-primary) !important;
+}
+
+body.light-theme .text-light:not(.hero-section *) {
+    color: var(--text-secondary) !important;
+}
+
+/* Ajuste para cards na seção de serviços no modo claro */
+body.light-theme .service-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+body.light-theme .service-card .text-light {
+    color: var(--text-secondary) !important;
+}
+
+body.light-theme .service-card .text-white {
+    color: var(--text-primary) !important;
+}
+
+/* Estilos específicos para a página de chamados */
+.main-content-section {
+    position: relative;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    overflow: hidden;
+    z-index: 1;
+}
+
+/* Fundo azul no modo escuro */
+body.dark-theme .main-content-section {
+    background-color: var(--azul-prefeitura);
+}
+
+/* Vídeo de fundo para a seção principal */
+.main-content-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -1;
+    opacity: 0.1; /* Opacidade reduzida para melhor legibilidade */
+}
+
+/* Ajustes para o texto na seção principal */
+.main-content-section h1,
+.main-content-section h2,
+.main-content-section h3,
+.main-content-section h4,
+.main-content-section h5,
+.main-content-section h6,
+.main-content-section p {
+    color: #212529;
+    transition: color 0.3s ease;
+    position: relative;
+    z-index: 2;
+}
+
+body.dark-theme .main-content-section h1,
+body.dark-theme .main-content-section h2,
+body.dark-theme .main-content-section h3,
+body.dark-theme .main-content-section h4,
+body.dark-theme .main-content-section h5,
+body.dark-theme .main-content-section h6,
+body.dark-theme .main-content-section p {
+    color: white;
+}
+
+
+/* Ajuste para a seção de canais de atendimento */
+.bg-light {
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-light::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('../imagens/background.mp4') no-repeat center center;
+    background-size: cover;
+    opacity: 0.05;
+    z-index: 0;
+}
+
+body.dark-theme .bg-light::before {
+    opacity: 0.1;
+}
+
+.bg-light .container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Estilos para a seção unificada com vídeo de fundo */
+.unified-video-section {
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+}
+
+.unified-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.unified-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.9));
+    z-index: 1;
+}
+
+body.dark-theme .unified-video-overlay {
+    background: linear-gradient(rgba(31, 44, 86, 0.85), rgba(31, 44, 86, 0.9));
+}
+
+.unified-video-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Ajustes para os cards na seção unificada */
+.unified-video-section .card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+body.dark-theme .unified-video-section .card {
+    background: rgba(18, 24, 37, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.unified-video-section .alert {
+    background: rgba(23, 162, 184, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+/* ===== Redimensionamento da página chamados.html ===== */
+
+/* Responsividade geral */
+@media (max-width: 1200px) {
+    .navbar .nav-link {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.95rem;
+    }
+    
+    .unified-video-section .card-body {
+        padding: 1.5rem !important;
+    }
+}
+
+@media (max-width: 992px) {
+    body {
+        padding-top: 160px;
+    }
+    
+    .navbar-wrapper {
+        top: 30px;
+        height: 130px;
+    }
+    
+    #navbar-video,
+    .navbar {
+        height: 130px;
+    }
+    
+    .navbar-collapse {
+        padding-top: 15px;
+        background-color: rgba(0, 0, 0, 0.85);
+        border-radius: 0 0 10px 10px;
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+    
+    #search-form {
+        margin-top: 10px;
+        width: 100%;
+    }
+    
+    #search-input {
+        width: 100% !important;
+    }
+
+    .dropdown-menu {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+    
+    .main-content-section h1 {
+        font-size: 2.5rem;
+    }
+    
+    .unified-video-section {
+        padding: 60px 0;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding-top: 140px;
+    }
+    
+    .navbar-wrapper {
+        top: 30px;
+        height: 110px;
+    }
+    
+    #navbar-video,
+    .navbar {
+        height: 110px;
+    }
+    
+    .main-content-section {
+        padding: 60px 0 !important;
+    }
+    
+    .main-content-section h1 {
+        font-size: 2.2rem;
+    }
+    
+    .main-content-section p.lead {
+        font-size: 1.1rem;
+    }
+
+    .navbar-brand img:first-child {
+        height: 80px !important;
+        width: auto;
+    }
+
+    /* Responsividade para ícones sociais */
+    .social-links {
+        gap: 0.5rem;
+    }
+    
+    .social-icon {
+        font-size: 1.4rem !important;
+        width: 35px;
+        height: 35px;
+    }
+    
+    .top-navbar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .accessibility-tools, 
+    .social-links, 
+    .theme-switcher {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .unified-video-section .card-body {
+        padding: 1rem !important;
+    }
+    
+    .display-4 {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-top: 120px;
+    }
+    
+    .navbar-wrapper {
+        top: 30px;
+        height: 90px;
+    }
+    
+    #navbar-video,
+    .navbar {
+        height: 90px;
+    }
+    
+    .logo-navbar {
+        height: 40px;
+        width: auto;
+    }
+    
+    .main-content-section h1 {
+        font-size: 1.8rem;
+    }
+
+    /* Ajuste para barra de pesquisa em mobile */
+    #search-input {
+        font-size: 0.9rem;
+        padding: 0.375rem 0.75rem;
+    }
+    
+    #search-button {
+        padding: 0.375rem 0.75rem;
+    }
+
+    .nav-link {
+        padding: 0.5rem 0.75rem;
+    }
+
+    .card {
+        margin-bottom: 1rem;
+    }
+
+    /* Responsividade para ícones sociais em mobile */
+    .social-links {
+        gap: 0.3rem;
+    }
+    
+    .social-icon {
+        font-size: 1.2rem !important;
+        width: 30px;
+        height: 30px;
+    }
+
+    .theme-switcher .btn {
+        font-size: 0.8rem;
+        padding: 0.25rem 0.5rem;
+    }
+    
+    .top-navbar {
+        font-size: 0.75rem;
+        padding: 5px 0;
+    }
+    
+    .top-navbar .btn {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.4rem;
+    }
+    
+    .unified-video-section {
+        padding: 40px 0;
+    }
+    
+    .unified-video-section .card-body {
+        padding: 0.75rem !important;
+    }
+    
+    .display-4 {
+        font-size: 1.8rem;
+    }
+    
+    .service-card .card-body {
+        padding: 1rem !important;
+    }
+}
+
+/* Comportamento de scroll para navbar compacta - igual ao index.html */
+.navbar-compact {
+    height: 80px !important;
+}
+
+.navbar-compact #navbar-video {
+    height: 80px !important;
+}
+
+.navbar-compact .navbar-brand img {
+    height: 60px !important;
+    width: auto;
+}
+
+.navbar-compact .nav-link {
+    padding: 0.4rem 0.6rem !important;
+    font-size: 0.9rem !important;
+}
+
+/* Ajustes específicos para a seção unificada em dispositivos móveis */
+@media (max-width: 768px) {
+    .unified-video-section .row > [class*="col-"] {
+        margin-bottom: 1rem;
+    }
+    
+    .unified-video-section .d-flex {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .unified-video-section .d-flex .me-4 {
+        margin-right: 0 !important;
+        margin-bottom: 1rem;
+    }
+    
+    .unified-video-section .alert {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para os cards de serviços em mobile */
+@media (max-width: 576px) {
+    .service-card {
+        margin-bottom: 1rem;
+    }
+    
+    .service-card .card-body {
+        padding: 1rem !important;
+    }
+    
+    .service-card h5 {
+        font-size: 1rem;
+    }
+    
+    .service-card p {
+        font-size: 0.9rem;
+    }
+}
+
+/* SOLUÇÃO DEFINITIVA - NAVBAR DECORATIVA vs DROPDOWN */
+.navbar-wrapper {
+    position: fixed;
+    top: 30px;
+    width: 100%;
+    z-index: 1000;
+    transition: height var(--transition-speed) ease;
+    display: flex;
+    flex-direction: column;
+    overflow: visible !important; /* Permite que dropdowns saiam do container */
+}
+
+.navbar-wrapper > .decorative-navbar {
+    position: relative !important; /* Muda de absolute para relative */
+    z-index: 1 !important; /* Z-index muito baixo */
+    margin-top: -8px; /* Compensa a altura da navbar decorativa */
+}
+
+/* Garante que os dropdowns fiquem acima de tudo */
+.navbar .dropdown-menu {
+    z-index: 10000 !important;
+    position: absolute;
+    margin-top: 0 !important;
+}
+
+/* Remove qualquer transformação que possa interferir */
+.navbar .dropdown-menu {
+    transform: none !important;
+}
+
+/* Correção para mobile */
+@media (max-width: 992px) {
+    .navbar-wrapper > .decorative-navbar {
+        margin-top: 0; /* Remove a compensação em mobile */
+        position: absolute !important; /* Volta para absolute em mobile */
+        bottom: 0;
+    }
+    
+    .navbar-collapse .dropdown-menu {
+        z-index: 10001 !important; /* Z-index ainda mais alto para mobile */
+        position: static !important;
+        margin-top: 0.5rem !important;
+    }
+}
+
+/* Estilos específicos para a página de lista telefônica */
+
+.phone-directory-section {
+    background-color: #f8f9fa;
+    min-height: 600px;
+}
+
+body.dark-theme .phone-directory-section {
+    background-color: var(--azul-prefeitura);
+}
+
+/* Barra de pesquisa */
+.search-box {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.search-box .form-control {
+    border-radius: 8px 0 0 8px;
+}
+
+.search-box .btn {
+    border-radius: 0 8px 8px 0;
+}
+
+/* Sidebar de categorias */
+.category-sidebar {
+    top: 100px;
+    padding-top: 20px;
+}
+
+.category-sidebar h3 {
+    color: var(--azul-prefeitura);
+    font-weight: 600;
+    border-bottom: 2px solid var(--verde-prefeitura);
+    padding-bottom: 10px;
+}
+
+body.dark-theme .category-sidebar h3 {
+    color: white;
+}
+
+.list-group-item {
+    border: none;
+    border-left: 3px solid transparent;
+    border-radius: 0;
+    padding: 12px 20px;
+    margin-bottom: 5px;
+    transition: all 0.3s ease;
+    background-color: transparent;
+}
+
+.list-group-item:hover,
+.list-group-item:focus {
+    border-left-color: var(--verde-prefeitura);
+    background-color: rgba(169, 202, 72, 0.1);
+}
+
+.list-group-item.active {
+    border-left-color: var(--verde-prefeitura);
+    background-color: rgba(169, 202, 72, 0.2);
+    color: var(--azul-prefeitura);
+    font-weight: 500;
+}
+
+body.dark-theme .list-group-item.active {
+    background-color: rgba(167, 223, 2, 0.3);
+    color: white;
+}
+
+/* Conteúdo da lista telefônica */
+.phone-directory-content {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+body.dark-theme .phone-directory-content {
+    background: var(--card-bg);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Seções de departamento */
+.department-section {
+    margin-bottom: 40px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid #eee;
+}
+
+.department-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+body.dark-theme .department-section {
+    border-bottom-color: #444;
+}
+
+.department-title {
+    color: var(--azul-prefeitura);
+    font-weight: 700;
+    margin-bottom: 25px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--verde-prefeitura);
+    display: flex;
+    align-items: center;
+}
+
+body.dark-theme .department-title {
+    color: white;
+}
+
+/* Itens de telefone */
+.phone-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    margin-bottom: 15px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    border-left: 4px solid transparent;
+}
+
+.phone-item:hover {
+    background: white;
+    border-left-color: var(--verde-prefeitura);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+body.dark-theme .phone-item {
+    background: var(--bg-tertiary);
+}
+
+body.dark-theme .phone-item:hover {
+    background: var(--bg-secondary);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.phone-info h5 {
+    color: var(--azul-prefeitura);
+    font-weight: 600;
+    margin-bottom: 5px;
+}
+
+body.dark-theme .phone-info h5 {
+    color: white;
+}
+
+.phone-info p {
+    color: #666;
+    font-size: 0.9rem;
+    margin-bottom: 0;
+}
+
+body.dark-theme .phone-info p {
+    color: #ccc;
+}
+
+.phone-number .btn {
+    border-radius: 20px;
+    padding: 8px 20px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.phone-number .btn:hover {
+    background-color: var(--verde-prefeitura);
+    border-color: var(--verde-prefeitura);
+    transform: scale(1.05);
+}
+
+/* Responsividade */
+@media (max-width: 992px) {
+    .category-sidebar {
+        position: static !important;
+        margin-bottom: 30px;
+    }
+    
+    .phone-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+    
+    .phone-info {
+        text-align: center;
+    }
+}
+
+@media (max-width: 768px) {
+    .phone-directory-content {
+        padding: 20px;
+    }
+    
+    .department-title {
+        font-size: 1.5rem;
+    }
+    
+    .search-box .input-group-lg {
+        flex-direction: column;
+    }
+    
+    .search-box .form-control {
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+    
+    .search-box .btn {
+        border-radius: 8px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 576px) {
+    .phone-item {
+        padding: 15px;
+    }
+    
+    .phone-info h5 {
+        font-size: 1rem;
+    }
+    
+    .phone-info p {
+        font-size: 0.8rem;
+    }
+    
+    .phone-number .btn {
+        padding: 6px 15px;
+    }
+}
+
+/* Animações e efeitos */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.department-section {
+    animation: fadeIn 0.6s ease forwards;
+}
+
+.department-section:nth-child(1) { animation-delay: 0.1s; }
+.department-section:nth-child(2) { animation-delay: 0.2s; }
+.department-section:nth-child(3) { animation-delay: 0.3s; }
+.department-section:nth-child(4) { animation-delay: 0.4s; }
+.department-section:nth-child(5) { animation-delay: 0.5s; }
+
+/* Scroll personalizado */
+.category-sidebar {
+    max-height: 70vh;
+    overflow-y: auto;
+    z-index: 1;
+}
+
+.category-sidebar::-webkit-scrollbar {
+    width: 6px;
+}
+
+.category-sidebar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+body.dark-theme .category-sidebar::-webkit-scrollbar-track {
+    background: #333;
+}
+
+.category-sidebar::-webkit-scrollbar-thumb {
+    background: var(--verde-prefeitura);
+    border-radius: 10px;
+}
+
+.category-sidebar::-webkit-scrollbar-thumb:hover {
+    background: #95b33c;
+}
+
+/* Indicador de categoria ativa */
+.list-group-item.active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 4px;
+    height: 20px;
+    background: var(--verde-prefeitura);
+    border-radius: 0 2px 2px 0;
+}
+
+/* Efeito de destaque na busca */
+.highlight {
+    background-color: #fff3cd;
+    padding: 2px 4px;
+    border-radius: 3px;
+}
+
+body.dark-theme .highlight {
+    background-color: #856404;
+    color: white;
+}
+
+/* Estilos específicos para a página do Betha */
+
+/* Ajustes para a seção principal do Betha */
+.main-content-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+
+body.dark-theme .main-content-section {
+    background: linear-gradient(135deg, #1f2c56 0%, #121825 100%);
+}
+
+/* Estilos para os cards de treinamento */
+.training-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.training-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.training-video-container {
+    position: relative;
+    height: 180px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    border-radius: 10px;
+    background-color: #6c757d;
+}
+
+.training-video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.training-fallback {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 3rem;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Botão de acesso ao Betha */
+.btn-primary {
+    background-color: var(--verde-prefeitura);
+    border-color: var(--verde-prefeitura);
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #95b33c;
+    border-color: #95b33c;
+    transform: translateY(-2px);
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .main-content-section {
+        padding: 60px 0;
+    }
+    
+    .training-video-container {
+        height: 150px;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content-section {
+        padding: 40px 0;
+    }
+    
+    .training-video-container {
+        height: 120px;
+    }
+    
+    .training-fallback {
+        font-size: 2rem;
+    }
+}
+
+/* Melhorias para os vídeos de treinamento */
+.training-video-container video {
+    transition: transform 0.3s ease;
+}
+
+.training-video-container:hover video {
+    transform: scale(1.05);
+}
+
+/* Estilo para o alerta informativo */
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+}
+
+body.dark-theme .alert-info {
+    background-color: rgba(23, 162, 184, 0.8);
+    color: #fff;
+}
+
+/* Ajustes de texto */
+.training-card h3 {
+    color: var(--azul-prefeitura);
+    font-weight: 600;
+}
+
+body.dark-theme .training-card h3 {
+    color: #fff;
+}
+
+.training-card p {
+    color: #6c757d;
+}
+
+body.dark-theme .training-card p {
+    color: #e9ecef;
+}
+
+/* Estilos específicos para a página de suporte */
+
+/* Ajustes para a seção principal de suporte */
+.main-content-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+
+body.dark-theme .main-content-section {
+    background: linear-gradient(135deg, #1f2c56 0%, #121825 100%);
+}
+
+/* Estilos para a seção unificada com vídeo de fundo */
+.unified-video-section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.unified-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.1;
+}
+
+.unified-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+    z-index: 1;
+}
+
+body.dark-theme .unified-video-overlay {
+    background: linear-gradient(rgba(31, 44, 86, 0.9), rgba(18, 24, 37, 0.95));
+}
+
+.unified-video-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilos para os cards de serviços */
+.service-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-card .display-4 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.service-card .btn {
+    margin-top: auto;
+}
+
+/* Estilos para os recursos de apoio */
+.channel-card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.channel-card .card-body {
+    padding: 2rem;
+}
+
+/* Estilos para o accordion de perguntas frequentes */
+.accordion-button {
+    font-weight: 500;
+    padding: 1.25rem;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #f8f9fa;
+    color: #1f2c56;
+}
+
+.accordion-body {
+    padding: 1.25rem;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .main-content-section {
+        padding: 60px 0;
+    }
+    
+    .unified-video-section {
+        padding: 60px 0;
+    }
+    
+    .channel-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .service-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content-section {
+        padding: 40px 0;
+    }
+    
+    .unified-video-section {
+        padding: 40px 0;
+    }
+    
+    .service-card .display-4 {
+        font-size: 2.5rem;
+    }
+    
+    .channel-card .card-body {
+        padding: 1rem;
+    }
+    
+    .accordion-button {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .accordion-body {
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Animações suaves */
+.service-card, .channel-card, .accordion-item {
+    transition: all 0.3s ease;
+}
+
+/* Melhorias de acessibilidade */
+.accordion-button:focus {
+    box-shadow: 0 0 0 0.2rem rgba(31, 44, 86, 0.25);
+}
+
+.service-card .btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(31, 44, 86, 0.25);
+}
+
+/* Estilos específicos para a página de suporte */
+
+/* Ajustes para a seção principal de suporte */
+.main-content-section {
+    padding: 80px 0;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
+}
+
+body.dark-theme .main-content-section {
+    background: linear-gradient(135deg, #1f2c56 0%, #121825 100%);
+}
+
+/* Estilos para a seção unificada com vídeo de fundo */
+.unified-video-section {
+    padding: 80px 0;
+    position: relative;
+}
+
+.unified-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    opacity: 0.1;
+}
+
+.unified-video-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.95));
+    z-index: 1;
+}
+
+body.dark-theme .unified-video-overlay {
+    background: linear-gradient(rgba(31, 44, 86, 0.9), rgba(18, 24, 37, 0.95));
+}
+
+.unified-video-section .container {
+    position: relative;
+    z-index: 2;
+}
+
+/* Estilos para a imagem de suporte */
+.support-image {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.support-image:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos para os cards de serviços */
+.service-card {
+    transition: all 0.3s ease;
+    border: none;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    height: 100%;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.service-card .display-4 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+/* Efeito de movimento (flutuar e sombra) para os botões de download em imagem */
+        .download-button-animated {
+            /* Define o elemento como um bloco para que a transformação funcione corretamente. */
+            display: inline-block;
+            /* Garante que a sombra não seja cortada e permite a elevação */
+            position: relative;
+            /* Adiciona uma transição suave para todas as propriedades afetadas */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            /* Adiciona uma sombra sutil para dar profundidade (opcional, mas recomendado) */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            /* Garante que o cursor mude para indicar que é clicável */
+            cursor: pointer;
+            /* Remove margens e padding que podem atrapalhar a animação */
+            margin: 0;
+            padding: 0;
+        }
+
+        .download-button-animated:hover {
+            /* Move o botão 5 pixels para cima (-5px no eixo Y) */
+            transform: translateY(-5px);
+            /* Aumenta a intensidade da sombra ao passar o mouse */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Opcional: Estilo para a imagem dentro do link para garantir que o movimento seja suave e responsivo */
+        .download-button-animated img {
+            display: block;
+            /* Garante que a imagem siga as regras do seu contêiner */
+        }
+        
+        /* Ajuste específico para o AeroAdmin para garantir que o link se comporte como bloco de animação */
+        .download-button-animated[href*="aeroadmin"] {
+            /* O link do aeroadmin tem um div pai com position:relative, precisamos garantir que ele se anime bem */
+            line-height: 0; /* Ajuda a eliminar espaço em branco indesejado */
+        }
+
+
+/* Estilos para o conteúdo principal */
+.card {
+    border: none;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.card .card-body {
+    padding: 2rem;
+}
+
+.alert {
+    border: none;
+    border-radius: 8px;
+}
+
+/* Estilos para links */
+a.text-primary {
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a.text-primary:hover {
+    color: #0a58ca !important;
+    text-decoration: underline;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+    .main-content-section {
+        padding: 60px 0;
+    }
+    
+    .unified-video-section {
+        padding: 60px 0;
+    }
+    
+    .card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .support-image {
+        margin-top: 2rem;
+        max-width: 80%;
+    }
+}
+
+@media (max-width: 576px) {
+    .main-content-section {
+        padding: 40px 0;
+    }
+    
+    .unified-video-section {
+        padding: 40px 0;
+    }
+    
+    .card .card-body {
+        padding: 1rem;
+    }
+    
+    .support-image {
+        max-width: 100%;
+        margin-top: 1.5rem;
+    }
+    
+    .display-4 {
+        font-size: 2.5rem;
+    }
+}
+
+/* Melhorias de acessibilidade */
+a:focus {
+    outline: 2px solid #0a58ca;
+    outline-offset: 2px;
+}
+
+.btn:focus {
+    box-shadow: 0 0 0 0.2rem rgba(10, 88, 202, 0.25);
+}
+
+/* Estilos para a página de Sistemas de Saúde */
+.system-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.system-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(194, 5, 5, 0.1);
+}
+
+.system-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #0d6efd;
+}
+
+.system-image {
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.system-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.system-link:hover {
+    color: inherit;
+}
+
+.system-title {
+    transition: color 0.3s ease;
+}
+
+.system-card:hover .system-title {
+    color: #0d6efd;
+}
+
+@media (max-width: 768px) {
+    .system-image {
+        height: 150px;
+    }
+}
+
+/* Estilos para a página de Sistemas de Educação */
+.system-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.system-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.system-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #198754;
+}
+
+.system-image {
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.system-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.system-link:hover {
+    color: inherit;
+}
+
+.system-title {
+    transition: color 0.3s ease;
+}
+
+.system-card:hover .system-title {
+    color: #198754;
+}
+
+@media (max-width: 768px) {
+    .system-image {
+        height: 150px;
+    }
+}
+
+/* Mudar a cor do maior background das páginas, sistemas_saude.html e sistemas_educacao.html.*/
+
+.bg-light {
+    background: var(--azul-prefeitura)!important;
+}
+
+/* Estilos para a página de Sistemas de Ouvidoria */
+.system-card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-radius: 10px;
+    overflow: hidden;
+    height: 100%;
+}
+
+.system-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.system-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: #6f42c1;
+}
+
+.system-image {
+    height: 180px;
+    object-fit: cover;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.system-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.system-link:hover {
+    color: inherit;
+}
+
+.system-title {
+    transition: color 0.3s ease;
+}
+
+.system-card:hover .system-title {
+    color: #6f42c1;
+}
+
+@media (max-width: 768px) {
+    .system-image {
+        height: 150px;
+    }
+}
+
+/* Estilos personalizados para o carrossel - SEM BACKGROUND */
+.carousel-caption {
+    background: transparent !important;
+    padding: 1rem;
+    left: 5%;
+    right: 5%;
+    bottom: 1.5rem;
+    width: 90%;
+    text-align: center;
+}
+
+.carousel-caption h5 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 0.8rem;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+    letter-spacing: 0.5px;
+}
+
+.carousel-caption p {
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
+    margin-bottom: 0;
+}
+
+.carousel-caption a {
+    font-weight: 700;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.carousel-caption a:hover {
+    text-decoration: underline;
+    opacity: 0.9;
+}
+
+/* Remover estilos de contraste automático */
+.carousel-caption.dark-text,
+.carousel-caption.light-text {
+    background: transparent !important;
+    backdrop-filter: none !important;
+}
+
+.carousel-caption.dark-text h5 a,
+.carousel-caption.dark-text p a,
+.carousel-caption.light-text h5 a,
+.carousel-caption.light-text p a {
+    color: #ffffff !important;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+/* Melhorias de responsividade */
+@media (max-width: 992px) {
+    .carousel-caption h5 {
+        font-size: 1.6rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-caption {
+        padding: 0.8rem;
+        bottom: 1rem;
+    }
+    
+    .carousel-caption h5 {
+        font-size: 1.4rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-caption {
+        padding: 0.5rem;
+        bottom: 0.5rem;
+    }
+    
+    .carousel-caption h5 {
+        font-size: 1.2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Efeito sutil de sombra atrás do texto para melhor contraste */
+.carousel-caption h5 a,
+.carousel-caption p a {
+    position: relative;
+    display: inline-block;
+}
+
+.carousel-caption h5 a::after,
+.carousel-caption p a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: rgba(255, 255, 255, 0.5);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.carousel-caption h5 a:hover::after,
+.carousel-caption p a:hover::after {
+    transform: scaleX(1);
+}
+
+/* Correção para altura fixa do carrossel */
+.carousel-inner {
+    height: 400px; /* Altura fixa para o carrossel */
+}
+
+.carousel-item {
+    height: 100%;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Mantém a proporção e cobre todo o espaço */
+}
+
+/* Responsividade para mobile */
+@media (max-width: 768px) {
+    .carousel-inner {
+        height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-inner {
+        height: 250px;
+    }
+    
+    .carousel-caption h5 {
+        font-size: 1.1rem;
+    }
+    
+    .carousel-caption p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Ajustes para o widget de clima na navbar */
+.weather-widget-container {
+    margin-left: auto;
+    margin-right: 15px;
+}
+
+/* Ajuste de responsividade para a navbar com widget */
+@media (max-width: 992px) {
+    .weather-widget-container {
+        margin: 10px 0;
+        order: 3;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .weather-widget {
+        justify-content: center;
+    }
+}
+
+/* === EFEITO HOVER PARA WEATHER WIDGET === */
+
+            /* Container principal */
+            .weather-widget-container {
+                display: inline-block;
+                cursor: pointer; /* mãozinha igual às logos */
+                transition: transform 0.3s ease;
+            }
+
+            /* Animação suave de salto */
+            .weather-widget-container:hover {
+                transform: translateY(-8px) scale(1.05);
+            }
+
+            /* Efeito de sombra ao pairar, deixando mais "vivo" */
+            .weather-widget-container:hover {
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+                border-radius: 12px;
+            }
+            
+
+            /* 1. Garante que o wrapper fixo tenha espaço vertical suficiente e não corte o conteúdo */
+.navbar-wrapper {
+    /* É comum que o wrapper tenha 'position: fixed;' no seu styles.css. */
+    /* Garanta que o overflow esteja visível, caso ele tenha sido definido como hidden em algum lugar */
+    overflow: visible; 
+    z-index: 1030; /* Garante que fique acima de tudo */
+    /* Transição suave para o encolhimento, se não estiver definido */
+    transition: transform 0.3s ease, height 0.3s ease; 
+}
+
+/* 2. Regras para o estado COMPACTADO/ENCOLHIDO */
+.navbar-wrapper.navbar-compact .navbar {
+    /* Garante que a barra interna encolha, mas ainda mostre o conteúdo */
+    padding-top: 5px; /* Ajuste o padding conforme necessário */
+    padding-bottom: 5px; /* Ajuste o padding conforme necessário */
+}
+
+/* 3. Ajuste o Widget de Clima para o estado COMPACTADO */
+.navbar-wrapper.navbar-compact #weather-widget-container {
+    /* Diminua o tamanho e a margem do widget quando a barra estiver compacta */
+    transform: scale(0.7); /* Reduz o widget para 70% do tamanho original */
+    transform-origin: right center; /* Garante que ele encolha a partir do canto direito */
+    margin-top: -5px; /* Ajuste fino vertical, se necessário */
+    margin-bottom: -5px; /* Ajuste fino vertical, se necessário */
+}
+
