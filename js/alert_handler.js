@@ -2,6 +2,17 @@ document.addEventListener('DOMContentLoaded', function() {
     // ===============================================================
     // --- PAINEL DE CONTROLE: Atualize SOMENTE ESTE BLOCO ---
     // ===============================================================
+
+    // Verifica se estamos na página principal (index.html ou raiz /)
+    // Se a URL NÃO tiver a pasta "/pages/", assume que é a raiz.
+    const isRoot = !window.location.pathname.includes('/pages/');
+    
+    // Se for raiz (index), usa "./" (procura aqui mesmo).
+    // Se for página interna (pages), usa "../" (volta uma pasta).
+    const pathPrefix = isRoot ? './' : '../';
+
+
+
     const globalAlert = {
         // Mude para 'false' para desativar o alerta em todas as páginas (controle do administrador)
         isActive: true,
@@ -18,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Pode ser um <img>, um ícone Bootstrap (bi bi-*) ou um emoji.
         // Exemplo: <img src="../imagens/alerta.png" alt="Alerta" style="height: 20px; vertical-align: middle;">
         // Exemplo: '🎉' ou '<i class="bi bi-calendar-check-fill me-2"></i>'
-        iconHtml: '<img id="alert-icon" src="../imagens/dia_do_servidor.png" alt="Alerta de Ponto Facultativo" style="height: 150px;">', 
+        iconHtml: '<img id="alert-icon" src="${pathPrefix}imagens/dia_do_servidor.png" alt="Alerta de Ponto Facultativo" style="height: 150px;">', 
         
         title: 'ATENÇÃO: Ponto Facultativo!',
         
